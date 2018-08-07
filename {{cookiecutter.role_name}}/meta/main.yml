@@ -26,6 +26,7 @@ galaxy_info:
 {% if cookiecutter.platform_alpine_versions %}
   - name: Alpine
     versions:
+{% set platform_alpine_versions_list = cookiecutter.platform_alpine_versions.lower().split(',') %}
 {% for version in cookiecutter.platform_alpine_versions %}
     - {{ version }}
 {% endfor %}
@@ -33,20 +34,23 @@ galaxy_info:
 {% if cookiecutter.platform_redhat_versions %}
   - name: EL
     versions:
-{% for version in cookiecutter.platform_redhat_versions %}
+{% set platform_redhat_versions_list = cookiecutter.platform_redhat_versions.lower().split(',') %}
+{% for version in cookiecutter.platform_redhat_versions_list %}
     - {{ version }}
 {% endfor %}
 {% endif %}
 {% if cookiecutter.platform_fedora_versions %}
   - name: Fedora
     versions:
-{% for version in cookiecutter.platform_fedora_versions %}
+{% set platform_fedora_versions_list = cookiecutter.platform_fedora_versions.lower().split(',') %}
+{% for version in platform_fedora_versions_list %}
     - {{ version }}
 {% endfor %}
 {% endif %}
 {% if cookiecutter.platform_debian_versions %}
   - name: Debian
     versions:
+{% set platform_debian_versions_list = cookiecutter.platform_debian_versions.lower().split(',') %}
 {% for version in cookiecutter.platform_debian_versions %}
     - {{ version }}
 {% endfor %}
@@ -54,18 +58,21 @@ galaxy_info:
 {% if cookiecutter.platform_ubuntu_versions %}
   - name: Ubuntu
     versions:
+{% set platform_ubuntu_versions_list = cookiecutter.platform_ubuntu_versions.lower().split(',') %}
 {% for version in cookiecutter.platform_ubuntu_versions %}
     - {{ version }}
 {% endfor %}
 {% endif %}
 {% if cookiecutter.categories %}
   categories:
-{% for cat in cookiecutter.categories %}
+{% set categories_list = cookiecutter.categories.lower().split(',') %}
+{% for cat in cookiecutter.categories_list %}
     - {{ cat }}
 {% endfor %}
 {% endif %}
 {% if cookiecutter.galaxy_tags %}
   galaxy_tags:
+{% set galaxy_tags_list = cookiecutter.galaxy_tags.lower().split(',') %}
 {% for tag in cookiecutter.galaxy_tags %}
     - {{ tag }}
 {% endfor %}
@@ -81,7 +88,8 @@ galaxy_info:
 
 {% if cookiecutter.dependencies %}
 dependencies:
-{% for dependency in cookiecutter.dependencies %}
+{% set dependencies_list = cookiecutter.dependencies.lower().split(',') %}
+{% for dependency in cookiecutter.dependencies_list %}
   - {{ dependency }}
 {% endfor %}
 {% else %}
