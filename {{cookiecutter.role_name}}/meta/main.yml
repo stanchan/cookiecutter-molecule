@@ -27,7 +27,7 @@ galaxy_info:
   - name: Alpine
     versions:
 {% set platform_alpine_versions_list = cookiecutter.platform_alpine_versions.lower().split(',') %}
-{% for version in cookiecutter.platform_alpine_versions %}
+{% for version in platform_alpine_versions %}
     - {{ version }}
 {% endfor %}
 {% endif %}
@@ -35,7 +35,7 @@ galaxy_info:
   - name: EL
     versions:
 {% set platform_redhat_versions_list = cookiecutter.platform_redhat_versions.lower().split(',') %}
-{% for version in cookiecutter.platform_redhat_versions_list %}
+{% for version in platform_redhat_versions_list %}
     - {{ version }}
 {% endfor %}
 {% endif %}
@@ -51,7 +51,7 @@ galaxy_info:
   - name: Debian
     versions:
 {% set platform_debian_versions_list = cookiecutter.platform_debian_versions.lower().split(',') %}
-{% for version in cookiecutter.platform_debian_versions %}
+{% for version in platform_debian_versions %}
     - {{ version }}
 {% endfor %}
 {% endif %}
@@ -59,21 +59,21 @@ galaxy_info:
   - name: Ubuntu
     versions:
 {% set platform_ubuntu_versions_list = cookiecutter.platform_ubuntu_versions.lower().split(',') %}
-{% for version in cookiecutter.platform_ubuntu_versions %}
+{% for version in platform_ubuntu_versions %}
     - {{ version }}
 {% endfor %}
 {% endif %}
 {% if cookiecutter.categories %}
   categories:
 {% set categories_list = cookiecutter.categories.lower().split(',') %}
-{% for cat in cookiecutter.categories_list %}
+{% for cat in categories_list %}
     - {{ cat }}
 {% endfor %}
 {% endif %}
 {% if cookiecutter.galaxy_tags %}
   galaxy_tags:
 {% set galaxy_tags_list = cookiecutter.galaxy_tags.lower().split(',') %}
-{% for tag in cookiecutter.galaxy_tags %}
+{% for tag in galaxy_tags %}
     - {{ tag }}
 {% endfor %}
 {% else %}
@@ -89,7 +89,7 @@ galaxy_info:
 {% if cookiecutter.dependencies %}
 dependencies:
 {% set dependencies_list = cookiecutter.dependencies.lower().split(',') %}
-{% for dependency in cookiecutter.dependencies_list %}
+{% for dependency in dependencies_list %}
   - {{ dependency }}
 {% endfor %}
 {% else %}
