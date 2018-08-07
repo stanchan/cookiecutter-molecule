@@ -15,5 +15,5 @@
     "galaxy_tags": "",
     "dependencies": "",
     "tasks": "main,prereqs,install,setup,service",
-    "task_runner": "{% set task_list = cookiecutter.tasks.lower().split(',') %}{{ task_list }}"
+    "task_files": "{% set task_list = cookiecutter.tasks.lower().split(',') %}{{ task_list }}"
 }
