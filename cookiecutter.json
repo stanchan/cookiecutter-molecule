@@ -11,7 +11,9 @@
     "platform_fedora_versions": [""],
     "platform_debian_versions": [9,8],
     "platform_ubuntu_versions": ["xenial","trusty"],
-    "catagories": [""],
-    "galaxy_tags": [""],
-    "dependencies": [""]
+    "catagories": "",
+    "galaxy_tags": "",
+    "dependencies": "",
+    "tasks": "main,prereqs,install,setup,service",
+    "task_runner": "{% set task_list = cookiecutter.tasks.lower().split(',') %}{{ task_list }}"
 }

@@ -10,8 +10,14 @@ provide their own templates.
 Usage
 =====
 
+First, install Cookiecutter.
+
 ```
 $ pip install cookiecutter
+```
+
+Now run it against this repo.
+```
 $ molecule init template --url https://github.com/stanchan/cookiecutter-molecule
 ```
 
