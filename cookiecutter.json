@@ -1,0 +1,17 @@
+{
+    "role_name": "role_name",
+    "scenario_name": "default",
+    "author": "your name",
+    "description": "your description",
+    "company": "your company (optional)",
+    "license": ["BSD", "MIT", "GPLv2", "GPLv3", "APLv2", "CC-BY", "Proprietary"],
+    "min_ansible_version": 2.5,
+    "platform_alpine_versions": ["all"],
+    "platform_redhat_versions": [7],
+    "platform_fedora_versions": [""],
+    "platform_debian_versions": [8,9],
+    "platform_ubuntu_versions": ["xenial","trusty"],
+    "catagories": [""],
+    "galaxy_tags": [""],
+    "dependencies": [""]
+}
