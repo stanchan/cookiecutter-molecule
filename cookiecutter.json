@@ -1,8 +1,9 @@
 {
-    "role_name": "role_name",
+    "id": "RoleName",
+    "role_name": "{{ id | lower }}",
     "scenario_name": "default",
     "author": "your name",
-    "description": "Role to install, configure and manage something",
+    "description": "Role to install, configure and manage {{ id }}",
     "company": "your company (optional)",
     "license": ["APLv2", "BSD", "MIT", "GPLv2", "GPLv3", "CC-BY", "Proprietary"],
     "min_ansible_version": 2.5,
