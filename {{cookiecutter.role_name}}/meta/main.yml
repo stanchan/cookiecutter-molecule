@@ -27,7 +27,7 @@ galaxy_info:
   - name: Alpine
     versions:
 {% set platform_alpine_versions_list = cookiecutter.platform_alpine_versions.lower().split(',') %}
-{% for version in platform_alpine_versions %}
+{% for version in platform_alpine_versions_list %}
     - {{ version }}
 {% endfor %}
 {% endif %}
