@@ -51,7 +51,7 @@ galaxy_info:
   - name: Debian
     versions:
 {% set platform_debian_versions_list = cookiecutter.platform_debian_versions.lower().split(',') %}
-{% for version in platform_debian_versions %}
+{% for version in platform_debian_versions_list %}
     - {{ version }}
 {% endfor %}
 {% endif %}
@@ -59,7 +59,7 @@ galaxy_info:
   - name: Ubuntu
     versions:
 {% set platform_ubuntu_versions_list = cookiecutter.platform_ubuntu_versions.lower().split(',') %}
-{% for version in platform_ubuntu_versions %}
+{% for version in platform_ubuntu_versions_list %}
     - {{ version }}
 {% endfor %}
 {% endif %}
@@ -73,7 +73,7 @@ galaxy_info:
 {% if cookiecutter.galaxy_tags %}
   galaxy_tags:
 {% set galaxy_tags_list = cookiecutter.galaxy_tags.lower().split(',') %}
-{% for tag in galaxy_tags %}
+{% for tag in galaxy_tags_list %}
     - {{ tag }}
 {% endfor %}
 {% else %}
