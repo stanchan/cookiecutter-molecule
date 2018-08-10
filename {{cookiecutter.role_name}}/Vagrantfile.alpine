@@ -12,7 +12,7 @@ end
 
 boxes = [
     {
-        :name => "{{ role_name }}.shift-labs.com",
+        :name => "{{ cookiecutter.role_name }}.shift-labs.com",
         :eth1 => "172.16.1.100",
         :mem => "2048",
         :cpu => "1",
@@ -53,9 +53,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       if index == boxes.size - 1
         config.vm.provision "ansible" do |ansible|
-          ansible.playbook = "{{ role_name }}.yml"
+          ansible.playbook = "{{ cookiecutter.role_name }}.yml"
           ansible.limit = "all"
-          ansible.inventory_path = "inventory/devtest/hosts"
+          ansible.groups = {
+            "all:vars" => {
+              "ansible_become": "true"
+            }
+          }
           ansible.host_key_checking = false
           ansible.verbose = "v"
         end
