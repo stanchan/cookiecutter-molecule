@@ -23,60 +23,60 @@ galaxy_info:
   # github_branch:
 
   platforms:
-{% if cookiecutter.platform_alpine_versions %}
-  - name: Alpine
-    versions:
-{% set platform_alpine_versions_list = cookiecutter.platform_alpine_versions.lower().split(',') %}
-{% for version in platform_alpine_versions_list %}
-    - {{ version }}
+{%- if cookiecutter.platform_alpine_versions -%}
+    - name: Alpine
+      versions:
+{%- set platform_alpine_versions_list = cookiecutter.platform_alpine_versions.lower().split(',') -%}
+{%- for version in platform_alpine_versions_list -%}
+        - {{ version }}
+{%- endfor -%}
+{%- endif -%}
+{%- if cookiecutter.platform_redhat_versions -%}
+    - name: EL
+      versions:
+{%- set platform_redhat_versions_list = cookiecutter.platform_redhat_versions.lower().split(',') -%}
+{%- for version in platform_redhat_versions_list -%}
+        - {{ version }}
+{%- endfor -%}
+{%- endif -%}
+{% if cookiecutter.platform_fedora_versions -%}
+    - name: Fedora
+      versions:
+{% set platform_fedora_versions_list = cookiecutter.platform_fedora_versions.lower().split(',') -%}
+{% for version in platform_fedora_versions_list -%}
+      - {{ version }}
 {% endfor %}
 {% endif %}
-{% if cookiecutter.platform_redhat_versions %}
-  - name: EL
-    versions:
-{% set platform_redhat_versions_list = cookiecutter.platform_redhat_versions.lower().split(',') %}
-{% for version in platform_redhat_versions_list %}
-    - {{ version }}
-{% endfor %}
-{% endif %}
-{% if cookiecutter.platform_fedora_versions %}
-  - name: Fedora
-    versions:
-{% set platform_fedora_versions_list = cookiecutter.platform_fedora_versions.lower().split(',') %}
-{% for version in platform_fedora_versions_list %}
-    - {{ version }}
-{% endfor %}
-{% endif %}
-{% if cookiecutter.platform_debian_versions %}
-  - name: Debian
-    versions:
-{% set platform_debian_versions_list = cookiecutter.platform_debian_versions.lower().split(',') %}
-{% for version in platform_debian_versions_list %}
-    - {{ version }}
-{% endfor %}
-{% endif %}
-{% if cookiecutter.platform_ubuntu_versions %}
-  - name: Ubuntu
-    versions:
-{% set platform_ubuntu_versions_list = cookiecutter.platform_ubuntu_versions.lower().split(',') %}
-{% for version in platform_ubuntu_versions_list %}
-    - {{ version }}
-{% endfor %}
-{% endif %}
-{% if cookiecutter.categories %}
+{% if cookiecutter.platform_debian_versions -%}
+    - name: Debian
+      versions:
+{%- set platform_debian_versions_list = cookiecutter.platform_debian_versions.lower().split(',') -%}
+{%- for version in platform_debian_versions_list -%}
+      - {{ version }}
+{%- endfor -%}
+{%- endif -%}
+{%- if cookiecutter.platform_ubuntu_versions -%}
+    - name: Ubuntu
+      versions:
+{%- set platform_ubuntu_versions_list = cookiecutter.platform_ubuntu_versions.lower().split(',') -%}
+{%- for version in platform_ubuntu_versions_list -%}
+      - {{ version }}
+{%- endfor -%}
+{%- endif -%}
+{%- if cookiecutter.categories -%}
   categories:
-{% set categories_list = cookiecutter.categories.lower().split(',') %}
-{% for cat in categories_list %}
+{%- set categories_list = cookiecutter.categories.lower().split(',') -%}
+{%- for cat in categories_list -%}
     - {{ cat }}
-{% endfor %}
-{% endif %}
-{% if cookiecutter.galaxy_tags %}
+{%- endfor -%}
+{%- endif -%}
+{%- if cookiecutter.galaxy_tags -%}
   galaxy_tags:
-{% set galaxy_tags_list = cookiecutter.galaxy_tags.lower().split(',') %}
-{% for tag in galaxy_tags_list %}
+{%- set galaxy_tags_list = cookiecutter.galaxy_tags.lower().split(',') -%}
+{%- for tag in galaxy_tags_list -%}
     - {{ tag }}
-{% endfor %}
-{% else %}
+{%- endfor -%}
+{%- else -%}
   galaxy_tags: []
   # List tags for your role here, one per line. A tag is a keyword that describes
   # and categorizes the role. Users find roles by searching for tags. Be sure to
@@ -84,16 +84,16 @@ galaxy_info:
   #
   # NOTE: A tag is limited to a single word comprised of alphanumeric characters.
   #       Maximum 20 tags per role.
-{% endif %}
+{%- endif -%}
 
-{% if cookiecutter.dependencies %}
+{%- if cookiecutter.dependencies -%}
 dependencies:
-{% set dependencies_list = cookiecutter.dependencies.lower().split(',') %}
-{% for dependency in dependencies_list %}
+{%- set dependencies_list = cookiecutter.dependencies.lower().split(',') -%}
+{%- for dependency in dependencies_list -%}
   - {{ dependency }}
-{% endfor %}
-{% else %}
+{%- endfor -%}
+{%- else -%}
 dependencies: []
 # List your role dependencies here, one per line. Be sure to remove the '[]' above,
 # if you add dependencies to this list.
-{% endif %}
+{%- endif -%}

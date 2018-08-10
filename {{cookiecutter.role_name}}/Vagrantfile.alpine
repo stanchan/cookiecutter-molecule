@@ -1,0 +1,65 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.require_version ">= 1.7.0"
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+unless Vagrant.has_plugin?("vagrant-hostmanager")
+  raise 'vagrant-hostmanager plugin is not installed! https://github.com/devopsgroup-io/vagrant-hostmanager'
+end
+
+boxes = [
+    {
+        :name => "{{ role_name }}.shift-labs.com",
+        :eth1 => "172.16.1.100",
+        :mem => "2048",
+        :cpu => "1",
+        :box => "stanchan/alpine-3.7-x86_64"
+    }
+]
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = false
+  config.hostmanager.manage_guest = true
+  config.hostmanager.ignore_private_ip = false
+
+  boxes.each_with_index do |options, index|
+
+    config.vm.define options[:name] do |config|
+      config.vm.box = options[:box]
+      config.vm.hostname = options[:name]
+      config.ssh.insert_key = false
+      config.vbguest.auto_update = false
+      config.vm.provider "virtualbox" do |v|
+        v.name = options[:name]
+        v.customize ["modifyvm", :id, "--memory", options[:mem]]
+        v.customize ["modifyvm", :id, "--cpus", options[:cpu]]
+
+        v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        v.customize ["modifyvm", :id, "--ioapic", "on"]
+      end
+      config.vm.network :private_network, ip: options[:eth1]
+
+      if index == 0
+        config.vm.network "forwarded_port", guest: 8090, host: 8090
+        config.vm.network "forwarded_port", guest: 80, host: 8080
+        config.vm.network "forwarded_port", guest: 443, host: 8443
+        config.vm.network "forwarded_port", guest: 3306, host: 8306
+      end
+
+      if index == boxes.size - 1
+        config.vm.provision "ansible" do |ansible|
+          ansible.playbook = "{{ role_name }}.yml"
+          ansible.limit = "all"
+          ansible.inventory_path = "inventory/devtest/hosts"
+          ansible.host_key_checking = false
+          ansible.verbose = "v"
+        end
+      end
+    end
+  end
+end
